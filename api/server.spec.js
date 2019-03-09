@@ -4,9 +4,7 @@ const db = require('../data/dbConfig');
 
 describe('App Server', () => {
 
-    afterEach(async () => {
-        await db('games').truncate();
-      });
+   
 
     describe('GET Method to /', () => {
         it('should return status code 200', async () => {
@@ -23,7 +21,15 @@ describe('App Server', () => {
         })
     })
 
+    describe('GET Method to /:id', () => {
+        it('should get the game with status 200', async () => {
+            const res = await request(server).get('/:id').query({id: 1})
+            expect(res.status).toBe(200)
+        })
+    })
+
     describe('POSTS Method to /', () => {
+        
         it('should return status 201 if correct data is entered', async () => {
             const res = await request(server).post('/').send({genre: "Kid Adventure", title:"Hey Arnold Adventure"})
             expect(res.status).toBe(201);

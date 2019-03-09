@@ -26,6 +26,21 @@ server.get('/', async (req, res) => {
     }
 })
 
+server.get('/:id', async (req, res) => {
+    const id = req.params.id
+    console.log(id)
+    try{
+        const game = await db.getGame(id);
+        console.log(game)
+        if(game) {
+            res.status(200).json(game)
+        }
+    }
+    catch(error){
+
+    }
+})
+
 server.post('/', checkGameInfo,async (req, res) => {
     try {
         const newGame = await db.addGame(req.body)
