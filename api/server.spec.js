@@ -3,9 +3,9 @@ const server = require('./server');
 const db = require('../data/dbConfig');
 
 describe('App Server', () => {
-
-   
-
+    afterEach( async () => {
+        await db('games').truncate()
+    })
     describe('GET Method to /', () => {
         it('should return status code 200', async () => {
             const res = await request(server).get('/');
@@ -28,6 +28,12 @@ describe('App Server', () => {
         })
     })
 
+    describe('DELETE Method to /;id', () => {
+        it('should return status code 204', async () => {
+            // const res = await request(server).delete('/:id').query({id: 1})
+            // expect(res.status).toBe(205)
+        })
+    })
     describe('POSTS Method to /', () => {
         
         it('should return status 201 if correct data is entered', async () => {

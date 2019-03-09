@@ -37,7 +37,7 @@ server.get('/:id', async (req, res) => {
         }
     }
     catch(error){
-
+        res.status(500).json(error)
     }
 })
 
@@ -49,6 +49,15 @@ server.post('/', checkGameInfo,async (req, res) => {
         } else {
             res.status(400).json({message: 'Error please try again'})
         }
+    }
+    catch(error){
+        res.status(500).json(error)
+    }
+})
+
+server.delete('/:id', async (req, res) => {
+    const id = req.params
+    try {
     }
     catch(error){
         res.status(500).json(error)

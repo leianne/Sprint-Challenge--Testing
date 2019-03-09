@@ -3,7 +3,7 @@ const db = require('../data/dbConfig');
 module.exports = {
     addGame,
     getGames,
-    getGame
+    getGame,
 }
 
 async function addGame(game) {
@@ -18,3 +18,4 @@ function getGames() {
 function getGame(id) {
     return db('games').where({id: id})
 }
+
