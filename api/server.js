@@ -15,6 +15,17 @@ const checkGameInfo = (req, res, next) => {
 
 // ROUTES
 server.use(express.json())
+
+server.get('/', async (req, res) => {
+    try {
+        const games = await db.getGames()
+        res.status(200).json(games)
+    }
+    catch(error) {
+        res.status(500).json(error)
+    }
+})
+
 server.post('/', checkGameInfo,async (req, res) => {
     try {
         const newGame = await db.addGame(req.body)
